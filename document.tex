@@ -1,0 +1,102 @@
+\documentclass[fleqn]{article}
+\usepackage{geometry} 
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{ifthen}
+\usepackage{pdfpages}
+\usepackage{graphicx} 
+\usepackage{setspace}
+\allowdisplaybreaks
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\fn}[3]{#1 : #2 \rightarrow #3}
+\newcommand{\br}[1]{\left( #1 \right)}
+\newcommand{\curly}[1]{\left\{ #1 \right\}}
+\newcommand{\set}[2]{\curly{#1\ \textbf{:}\ #2}}
+\newcommand{\im}{\textbf{im }}
+\newcommand{\codom}{\textbf{codom }}
+\newcommand{\sbr}[1]{\left[ #1 \right]}
+\newcommand{\eqn}[1]{\begin{eqnarray*} #1 \end{eqnarray*}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\eps}{\epsilon}
+\newcommand{\del}{\delta}
+\newcommand{\limit}[3]{\lim_{#1 \rightarrow #2}#3}
+\newcommand{\bmat}[1]{\ensuremath{\begin{bmatrix} #1 \end{bmatrix}}}
+\newcommand{\vmat}[1]{\ensuremath{\begin{vmatrix} #1 \end{vmatrix}}}
+\newcommand{\smat}[1]{\ensuremath{\left[\begin{smallmatrix} #1 \end{smallmatrix}\right]}}
+\newcommand{\diff}[3][]{%                                                                                                          
+	\ifthenelse{\equal{#1}{}}{%
+		\ensuremath{\frac{d{#2}}{d{#3}}}%
+	}{%                                                                                                                                  
+		\ensuremath{\frac{d^{#1}\!{#2}}{d{#3}^{#1}}}%                                                                                                   
+	}%
+}
+\title{\textbf{TITLE HERE}
+	
+	TITLE HERE
+}
+
+\author{Vyom Patel}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	
+	We denote the set of real numbers as $\R$ and that of complex numbers as
+	$\C$.
+	A map is written as $\fn{f}{X}{Y}$ where $\im f = f(X)$ and $\codom f = Y$.
+	These are large brackets:
+	\[
+	\br{\frac{a}{b}}\br{a + b}
+	\]
+	A simple set:
+	\[
+	\curly{\frac{1}{2}, \frac{2}{3}, \frac{\pi^2}{6}}
+	\]
+	A set with a predicate:
+	\[
+	\set{z}{\zeta\br{z} = 0}
+	\]
+	Here is a matrix:
+	\[
+	\bmat{
+		1 & 1 \\
+		0 & 1 \\
+	}
+	\]
+	Equivalence class of a sequence:
+	\[
+	\sbr{\frac{1}{n}}
+	\]
+	This is an aligned equation:
+	\eqn{
+		A &=& 1\\
+		B &=& 2\\
+		C &=& 3
+	}
+	This is a limit:
+	\eqn{
+		\limit{n}{\infty}{\sum_{i = 1}^n \frac{1}{i^2}}
+	}
+\\
+
+	Limits of functions $\fn{f}{\R^m}{\R^n}$ are defined as follows:
+	\eqn{
+		\limit{x}{a}{f(x)} = p \iff
+		\forall \eps > 0, \exists \del > 0, \abs{x - a} < \del
+		\implies \abs{f(x) - f(a)} < \eps
+	}
+	Here are some derivatives:
+	\eqn{
+		\diff{x}{y}\\
+		\diff[2]{x}{y} \br{\sum_{k = 1}^{\infty}\frac{1}{k^x}}
+	}
+	
+\end{document}
