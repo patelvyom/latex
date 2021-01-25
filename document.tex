@@ -8,9 +8,18 @@
 \usepackage{pdfpages}
 \usepackage{graphicx} 
 \usepackage{setspace}
+\usepackage{extarrows} 
+\usepackage{mathtools}
+\usepackage{microtype}
+
+\usepackage[sc]{mathpazo}
+\linespread{1.1}
 \allowdisplaybreaks
 
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
+\renewcommand{\bf}[1]{\textbf{#1}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
@@ -48,7 +57,7 @@
 
 \begin{document}
 	\maketitle
-	
+	\subsection{The font mathpazo is used by this template.}
 	We denote the set of real numbers as $\R$ and that of complex numbers as
 	$\C$.
 	A map is written as $\fn{f}{X}{Y}$ where $\im f = f(X)$ and $\codom f = Y$.
