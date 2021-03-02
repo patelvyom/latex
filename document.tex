@@ -1,5 +1,6 @@
 \documentclass[fleqn]{article}
-\usepackage{geometry} 
+\usepackage{geometry}
+\geometry{margin=1in}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
@@ -11,18 +12,21 @@
 \usepackage{extarrows} 
 \usepackage{mathtools}
 \usepackage{microtype}
-%\usepackage{newpxtext}
 
-\usepackage[sc]{mathpazo}
-\linespread{1.1}
+%\usepackage[sc]{mathpazo}
+\linespread{1.2}
 \allowdisplaybreaks
 
-%\usepackage{newpxmath}
+%The two lines below essentially have same "feel" of mathpazo but makes the
+%math symbols better compared to regular mathpazo math symbols.
+\usepackage{newpxmath}
+\usepackage{newpxtext}
 
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-
 \renewcommand{\bf}[1]{\textbf{#1}}
+\renewcommand{\it}[1]{\textit{#1}}
+
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
@@ -55,60 +59,70 @@
 	TITLE HERE
 }
 
-\author{Vyom Patel}
+\author{Vyom Patel \ NSID : vnp614}
 \date{\today}
 
 \begin{document}
-	\maketitle
-	\subsection{The font mathpazo is used by this template.}
-	We denote the set of real numbers as $\R$ and that of complex numbers as
-	$\C$.
-	A map is written as $\fn{f}{X}{Y}$ where $\im f = f(X)$ and $\codom f = Y$.
-	These are large brackets:
-	\[
-	\br{\frac{a}{b}}\br{a + b}
-	\]
-	A simple set:
-	\[
-	\curly{\frac{1}{2}, \frac{2}{3}, \frac{\pi^2}{6}}
-	\]
-	A set with a predicate:
-	\[
-	\set{z}{\zeta\br{z} = 0}
-	\]
-	Here is a matrix:
-	\[
-	\bmat{
-		1 & 1 \\
-		0 & 1 \\
-	}
-	\]
-	Equivalence class of a sequence:
-	\[
-	\sbr{\frac{1}{n}}
-	\]
-	This is an aligned equation:
-	\eqn{
-		A &=& 1\\
-		B &=& 2\\
-		C &=& 3
-	}
-	This is a limit:
-	\eqn{
-		\limit{n}{\infty}{\sum_{i = 1}^n \frac{1}{i^2}}
-	}
-\\
+\maketitle
 
-	Limits of functions $\fn{f}{\R^m}{\R^n}$ are defined as follows:
-	\eqn{
-		\limit{x}{a}{f(x)} = p \iff
-		\forall \eps > 0, \exists \del > 0, \abs{x - a} < \del
-		\implies \abs{f(x) - f(a)} < \eps
-	}
-	Here are some derivatives:
-	\eqn{
-		\diff{x}{y}\\
-		\diff[2]{x}{y} \br{\sum_{k = 1}^{\infty}\frac{1}{k^x}}
-	}
-	
+\subsection{Mathpazo text has been used in this template.}
+
+We denote the set of real numbers as $\R$ and that of complex numbers as
+$\C$.
+
+A map is written as $\fn{f}{X}{Y}$ where $\im f = f(X)$ and $\codom f = Y$.
+
+These are large brackets:
+
+\[
+\br{\frac{a}{b}}\br{a + b}
+\]
+
+A simple set:
+\[
+  \curly{\frac{1}{2}, \frac{2}{3}, \frac{\pi^2}{6}}
+\]
+
+A set with a predicate:
+\[
+  \set{z}{\zeta\br{z} = 0}
+\]
+
+Here is a matrix:
+\[
+  \bmat{
+    1 & 1 \\
+    0 & 1 \\
+  }
+\]
+
+Equivalence class of a sequence:
+\[
+  \sbr{\frac{1}{n}}
+\]
+
+This is an aligned equation:
+\eqn{
+  A &=& 1\\
+  B &=& 2\\
+  C &=& 3
+}
+
+This is a limit:
+\eqn{
+  \limit{n}{\infty}{\sum_{i = 1}^n \frac{1}{i^2}}
+}
+
+Limits of functions $\fn{f}{\R^m}{\R^n}$ are defined as follows:
+\eqn{
+  \limit{x}{a}{f(x)} = p \iff
+    \forall \eps > 0, \exists \del > 0, \abs{x - a} < \del
+    \implies \abs{f(x) - f(a)} < \eps
+}
+
+Here are some derivatives:
+\eqn{
+  \diff{n}{x}{\br{\sum_{k = 1}^{\infty}\frac{1}{k^x}}}
+}
+
 \end{document}
