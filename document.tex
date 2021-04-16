@@ -1,6 +1,9 @@
+% There are a lot of packages imported just because I may have used them once. So far,
+% I have not noticed any noticeable speed difference so who cares. :p
 \documentclass[fleqn]{article}
 \usepackage{geometry}
-\geometry{margin=1in}
+%Uhh maybe change a4paper to letter if someone may print it. Stupid US Standards.
+\geometry{a4paper,margin=1in}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
@@ -12,20 +15,36 @@
 \usepackage{extarrows} 
 \usepackage{mathtools}
 \usepackage{microtype}
+\usepackage{cancel}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[%  
+    colorlinks=true,
+    pdfborder={0 0 0},
+    linkcolor=red
+]{hyperref}
 
 %\usepackage[sc]{mathpazo}
-\linespread{1.2}
+\linespread{1.3}
 \allowdisplaybreaks
 
 %The two lines below essentially have same "feel" of mathpazo but makes the
-%math symbols better compared to regular mathpazo math symbols.
-\usepackage{newpxmath}
+%math symbols better compared to regular mathpazo math symbols. As of this
+%moment I feel like using regular Latex Math font. :(
+%\usepackage{newpxmath}
 \usepackage{newpxtext}
 
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \renewcommand{\bf}[1]{\textbf{#1}}
 \renewcommand{\it}[1]{\textit{#1}}
+\renewcommand\qedsymbol{$\blacksquare$} %Black square looks nice
+\newcommand{\latex}{\LaTeX\xspace}
+\newcommand{\tex}{\TeX\xspace}
+
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -41,7 +60,7 @@
 \newcommand{\sbr}[1]{\left[ #1 \right]}
 \newcommand{\eqn}[1]{\begin{eqnarray*} #1 \end{eqnarray*}}
 \newcommand{\abs}[1]{\left| #1 \right|}
-\newcommand{\eps}{\epsilon}
+\newcommand{\eps}{\varepsilon}%varepsilon is better
 \newcommand{\del}{\delta}
 \newcommand{\limit}[3]{\lim_{#1 \rightarrow #2}#3}
 \newcommand{\bmat}[1]{\ensuremath{\begin{bmatrix} #1 \end{bmatrix}}}
@@ -54,18 +73,23 @@
 		\ensuremath{\frac{d^{#1}\!{#2}}{d{#3}^{#1}}}%                                                                                                   
 	}%
 }
-\title{\textbf{TITLE HERE}
-	
-	TITLE HERE
+\newcommand{\overbar}[1]{%Between overline and overbar
+    \mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}%
+    \mkern 1.5mu%
 }
 
-\author{Vyom Patel \ NSID : vnp614}
+\title{\textbf{\huge{TITLE HERE}}
+	
+    \huge{TEXT HERE}
+}
+
+\author{Vyom Patel \\ NSID : vnp614}
 \date{\today}
 
 \begin{document}
 \maketitle
 
-\subsection{Mathpazo text has been used in this template.}
+\subsection{newpxtext has been used in this template for regular text.}
 
 We denote the set of real numbers as $\R$ and that of complex numbers as
 $\C$.
@@ -125,4 +149,7 @@ Here are some derivatives:
   \diff{n}{x}{\br{\sum_{k = 1}^{\infty}\frac{1}{k^x}}}
 }
 
+\begin{proof}
+    Q.E.D square looks like this...
+\end{proof}
 \end{document}
