@@ -19,6 +19,7 @@
 \usepackage{wrapfig}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{xspace}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[%  
@@ -42,9 +43,8 @@
 \renewcommand{\bf}[1]{\textbf{#1}}
 \renewcommand{\it}[1]{\textit{#1}}
 \renewcommand\qedsymbol{$\blacksquare$} %Black square looks nice
-\newcommand{\latex}{\LaTeX\xspace}
+\newcommand{\latex}{\LaTeX}
 \newcommand{\tex}{\TeX\xspace}
-
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -64,6 +64,7 @@
 \newcommand{\del}{\delta}
 \newcommand{\limit}[3]{\lim_{#1 \rightarrow #2}#3}
 \newcommand{\bmat}[1]{\ensuremath{\begin{bmatrix} #1 \end{bmatrix}}}
+\newcommand{\pmat}[1]{\ensuremath{\begin{pmatrix} #1 \end{pmatrix}}}
 \newcommand{\vmat}[1]{\ensuremath{\begin{vmatrix} #1 \end{vmatrix}}}
 \newcommand{\smat}[1]{\ensuremath{\left[\begin{smallmatrix} #1 \end{smallmatrix}\right]}}
 \newcommand{\diff}[3][]{%                                                                                                          
@@ -91,6 +92,7 @@
 
 \subsection{newpxtext has been used in this template for regular text.}
 
+Let's start with printing out TeX, LaTeX logo/symbol: \tex , \latex. \\
 We denote the set of real numbers as $\R$ and that of complex numbers as
 $\C$.
 
@@ -112,18 +114,42 @@ A set with a predicate:
   \set{z}{\zeta\br{z} = 0}
 \]
 
-Here is a matrix:
-\[
-  \bmat{
-    1 & 1 \\
-    0 & 1 \\
-  }
-\]
+Here are a few matrices:
+\begin{itemize}
+  \item Square-brackets: \[
+    \bmat{
+      1 & 1 \\
+      0 & 1 \\
+    }
+  \]
+  \item Round-brackets: \[
+    \pmat{
+      1 & 1 \\
+      0 & 1 \\
+    }
+  \]
+  \item Determinant type: \[
+    \vmat{
+      1 & 1 \\
+      0 & 1 \\
+    }
+  \]
+  \item Small-matrix: \[
+    \smat{
+      1 & 1 \\
+      0 & 1 \\
+    }
+  \]
+\end{itemize}
 
 Equivalence class of a sequence:
 \[
   \sbr{\frac{1}{n}}
 \]
+
+Use ceiling and floor like this: $\ceil{x}$ and $\ceil{\frac{a}{b}}$.You can pass
+optional size argument to make it bigger like this: $\ceil[\Big]{\frac{a}{b}}$.
+Floor is used in a similar manner.\\
 
 This is an aligned equation:
 \eqn{
@@ -145,11 +171,23 @@ Limits of functions $\fn{f}{\R^m}{\R^n}$ are defined as follows:
 }
 
 Here are some derivatives:
-\eqn{
-  \diff{n}{x}{\br{\sum_{k = 1}^{\infty}\frac{1}{k^x}}}
-}
+\begin{itemize}
+  \item Regular derivative:
+  \eqn{
+    \diff{y}{x}{\br{\sum_{k = 1}^{\infty}\frac{1}{k^x}}}
+  }
+  \item n'th Derivative: 
+  \eqn{
+    \diff[n]{y}{x}{\br{\sum_{k = 1}^{\infty}\frac{1}{k^x}}}
+  }
+\end{itemize}
 
+To make some text bold, use \bf{this}. To make it italic, use \it{this}. Note that
+in-built "bf" and "it" functions do something different.
+
+To 
 \begin{proof}
     Q.E.D square looks like this...
 \end{proof}
+
 \end{document}
