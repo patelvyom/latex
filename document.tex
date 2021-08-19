@@ -4,25 +4,28 @@
 \usepackage{geometry}
 %Uhh maybe change a4paper to letter if someone may print it. Stupid US Standards.
 \geometry{a4paper,margin=1in}
+%Import some ams packages for math sybmols/fonts/etc.
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{amsfonts}
-\usepackage{ifthen}
-\usepackage{pdfpages}
-\usepackage{graphicx} 
-\usepackage{setspace}
-\usepackage{extarrows} 
-\usepackage{mathtools}
-\usepackage{microtype}
-\usepackage{cancel}
-\usepackage{wrapfig}
-\usepackage{caption}
-\usepackage{subcaption}
+\usepackage{ifthen} %Use if-else statement
+\usepackage{pdfpages} %Used in including pdf's
+\usepackage{graphicx} %Used to manage images in latex
+\usepackage{setspace} %setting the spacing between lines in a document.
+\usepackage{extarrows} %add fancy-arrows for eg. arrow with super-script etc.
+\usepackage{mathtools} %basically more math symbols
+%micro-typographic extensions. I don't understand/use everything,
+% but just including this package improves final latex pdf.
+\usepackage{microtype} 
+\usepackage{cancel} % Place diaogonal-lines(cancelling) across math terms
+\usepackage{wrapfig} % Wrap text around figures
+\usepackage{caption} % Customising captions in figures,tables,etc.
+\usepackage{subcaption} 
 \usepackage{xspace}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc} %Use chars outside basic ASCII
 \usepackage[T1]{fontenc}
-\usepackage[%  
+\usepackage[%  Links for 
     colorlinks=true,
     pdfborder={0 0 0},
     linkcolor=red
@@ -30,7 +33,7 @@
 
 %\usepackage[sc]{mathpazo}
 \linespread{1.3}
-\allowdisplaybreaks
+\allowdisplaybreaks %Allow page-breaks between math env
 
 %The two lines below essentially have same "feel" of mathpazo but makes the
 %math symbols better compared to regular mathpazo math symbols. As of this
