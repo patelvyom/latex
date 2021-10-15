@@ -43,7 +43,8 @@ DEPENDS=\\
 		title.tex\\
 		body.tex\\
 		bibliography.bib\\
-		macros.sty
+		macros.sty\\
+        ${PROJECT}.xmpdata
 
 ${TARGET_PDF}: ${PROJECT}.tex ${DEPENDS}
 \tpdflatex -interaction=nonstopmode $<
@@ -72,10 +73,8 @@ MACROS = File('macros.sty',
 %Uhh maybe change a4paper to letter if someone may print it. Stupid US Standards.
 \\geometry{a4paper,margin=1in}
 %Import some ams packages for math sybmols/fonts/etc.
-\\usepackage{amsmath}
-\\usepackage{amsthm}
-\\usepackage{amssymb}
-\\usepackage{amsfonts}
+\\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\\usepackage{xcolor}
 \\usepackage{ifthen} %Use if-else statement
 \\usepackage{pdfpages} %Used in including pdf's
 \\usepackage{graphicx} %Used to manage images in latex
@@ -92,11 +91,14 @@ MACROS = File('macros.sty',
 \\usepackage{xspace}
 \\usepackage[utf8]{inputenc} %Use chars outside basic ASCII
 \\usepackage[T1]{fontenc}
-\\usepackage[%  Links for 
-		colorlinks=true,
-		pdfborder={0 0 0},
-		linkcolor=red
-]{hyperref}
+\\usepackage[a-1b]{pdfx}
+\\usepackage{hyperref}
+\\hypersetup{
+	pdfborder={0 0 0},
+    colorlinks=true,
+	allcolors=green %choose the colour of hyperlinks 
+}
+\\let\C\\relax % hyperref uses \C for a certain accent when using bookmarks I guess
 
 %\\usepackage[sc]{mathpazo}
 \\linespread{1.3}
@@ -110,6 +112,7 @@ MACROS = File('macros.sty',
 
 \\DeclarePairedDelimiter{\\floor}{\\lfloor}{\\rfloor}
 \\DeclarePairedDelimiter{\\ceil}{\\lceil}{\\rceil}
+\\DeclarePairedDelimiter\inner{\langle}{\rangle}
 \\renewcommand{\\bf}[1]{\\textbf{#1}}
 \\renewcommand{\\it}[1]{\\textit{#1}}
 \\renewcommand\\qedsymbol{$\\blacksquare$} %Black square looks nice
@@ -268,13 +271,13 @@ To
 \\end{proof}
 
 % Uncomment the following line for bibliography:
-Here is a ciatation of a great book \\cite{sheaves}.
+Here is a ciatation of a great book \\cite{DDSE}.
 
 """)
 
 BIBLIOGRAPHY = File('bibliography.bib',
 """
-@book{sheaves,
+@book{DDSE,
 	title={Data-Driven Science and Engineering},
 	subtitle={Machine Learning, Dynamical Systems, and Control.},
 	author={Brunton, Steven L., and Jose Nathan Kutz.},
@@ -309,6 +312,102 @@ MAIN = File(f'{PROJECT}.tex',
 """
 )
 
+METADATA = File(f'{PROJECT}.xmpdata',
+"""
+% Replace the following information with your document's actual
+% metadata. If you do not want to set a value for a certain parameter,
+% just omit it.
+%
+% Symbols permitted in metadata
+% =============================
+% 
+% Within the metadata, all printable ASCII characters except
+% '\', '{', '}', and '%' represent themselves. Also, all printable
+% Unicode characters from the basic multilingual plane (i.e., up to
+% code point U+FFFF) can be used directly with the UTF-8 encoding. 
+% Consecutive whitespace characters are combined into a single
+% space. Whitespace after a macro such as \copyright, \backslash, or
+% \sep is ignored. Blank lines are not permitted. Moreover, the
+% following markup can be used:
+%
+%  '\ '         - a literal space  (for example after a macro)                  
+%   \%          - a literal '%'                                                 
+%   \{          - a literal '{'                                                 
+%   \}          - a literal '}'                                                 
+%   \backslash  - a literal '\'                                                 
+%   \copyright  - the (c) copyright symbol                                      
+%
+% The macro \sep is only permitted within \Author, \Keywords, and
+% \Org.  It is used to separate multiple authors, keywords, etc.
+% 
+% List of supported metadata fields
+% =================================
+% 
+% Here is a complete list of user-definable metadata fields currently
+% supported, and their meanings. More may be added in the future.
+% 
+% General information:
+%
+%  \Author           - the document's human author. Separate multiple
+%                      authors with \sep.
+%  \Title            - the document's title.
+%  \Keywords         - list of keywords, separated with \sep.
+%  \Subject          - the abstract. 
+%  \Org              - publishers.
+% 
+% Copyright information:
+%
+%  \Copyright        - a copyright statement.
+%  \CopyrightURL     - location of a web page describing the owner
+%                      and/or rights statement for this document.
+%  \Copyrighted      - 'True' if the document is copyrighted, and
+%                      'False' if it isn't. This is automatically set
+%                      to 'True' if either \Copyright or \CopyrightURL
+%                      is specified, but can be overridden. For
+%                      example, if the copyright statement is "Public
+%                      Domain", this should be set to 'False'.
+%
+% Publication information:
+%
+% \PublicationType   - The type of publication. If defined, must be
+%                      one of book, catalog, feed, journal, magazine,
+%                      manual, newsletter, pamphlet. This is
+%                      automatically set to "journal" if \Journaltitle
+%                      is specified, but can be overridden.
+% \Journaltitle      - The title of the journal in which the document
+%                      was published. 
+% \Journalnumber     - The ISSN for the publication in which the
+%                      document was published.
+% \Volume            - Journal volume.
+% \Issue             - Journal issue/number.
+% \Firstpage         - First page number of the published version of
+%                      the document.
+% \Lastpage          - Last page number of the published version of
+%                      the document.
+% \Doi               - Digital Object Identifier (DOI) for the
+%                      document, without the leading "doi:".
+% \CoverDisplayDate  - Date on the cover of the journal issue, as a
+%                      human-readable text string.
+% \CoverDate         - Date on the cover of the journal issue, in a
+%                      format suitable for storing in a database field
+%                      with a 'date' data type.
+
+
+
+\\Title        {TITLE HERE}
+
+\\Author       {Vyom Patel}
+
+\\Copyright    {Copyright \copyright\ 2021 "Vyom Patel"}
+
+\\Keywords     {some keyword\sep
+               another keyword\sep
+               some more keywords}
+
+\\Subject      {SUBJECT HERE}
+
+"""
+)
 FILES = [ PROJECT_FILE,
 		  GITIGNORE,
 		  MAKEFILE,
@@ -316,7 +415,8 @@ FILES = [ PROJECT_FILE,
 		  TITLE,
 		  BODY,
 		  BIBLIOGRAPHY,
-		  MAIN
+		  MAIN,
+		  METADATA
 		]
 
 print(f'> Making directory {PROJECT}...')
