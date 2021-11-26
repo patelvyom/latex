@@ -112,7 +112,7 @@ MACROS = File('macros.sty',
 
 \\DeclarePairedDelimiter{\\floor}{\\lfloor}{\\rfloor}
 \\DeclarePairedDelimiter{\\ceil}{\\lceil}{\\rceil}
-\\DeclarePairedDelimiter\inner{\langle}{\rangle}
+\\DeclarePairedDelimiter{\\inner}{\\langle}{\\rangle}
 \\renewcommand{\\bf}[1]{\\textbf{#1}}
 \\renewcommand{\\it}[1]{\\textit{#1}}
 \\renewcommand\\qedsymbol{$\\blacksquare$} %Black square looks nice
