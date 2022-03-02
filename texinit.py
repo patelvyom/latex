@@ -398,7 +398,7 @@ METADATA = File(f'{PROJECT}.xmpdata',
 
 \\Author       {Vyom Patel}
 
-\\Copyright    {Copyright \copyright\ 2021 "Vyom Patel"}
+\\Copyright    {Copyright \copyright\ 2022 "Vyom Patel"}
 
 \\Keywords     {some keyword\sep
                another keyword\sep
