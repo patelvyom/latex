@@ -48,9 +48,9 @@ DEPENDS=\\
 
 ${TARGET_PDF}: ${PROJECT}.tex ${DEPENDS}
 \tpdflatex -interaction=nonstopmode $<
-\tbiber ${PROJECT}                     # Uncomment for bibliography
-\tpdflatex -interaction=nonstopmode $< # Uncomment for bibliography
-\tpdflatex -interaction=nonstopmode $< # Uncomment for bibliography
+#\tbiber ${PROJECT}                     # Uncomment for bibliography
+#\tpdflatex -interaction=nonstopmode $< # Uncomment for bibliography
+#\tpdflatex -interaction=nonstopmode $< # Uncomment for bibliography
 
 ${PROJECT}: ${TARGET_PDF}
 
@@ -91,6 +91,7 @@ MACROS = File('macros.sty',
 \\usepackage{xspace}
 \\usepackage[utf8]{inputenc} %Use chars outside basic ASCII
 \\usepackage[T1]{fontenc}
+\\usepackage{enumerate} %For easy enumerate styles
 \\usepackage[a-1b]{pdfx}
 \\usepackage{hyperref}
 \\hypersetup{
@@ -271,7 +272,7 @@ To
 \\end{proof}
 
 % Uncomment the following line for bibliography:
-Here is a ciatation of a great book \\cite{DDSE}.
+% Here is a ciatation of a great book \\cite{DDSE}.
 
 """)
 
@@ -289,14 +290,21 @@ BIBLIOGRAPHY = File('bibliography.bib',
 
 MAIN = File(f'{PROJECT}.tex',
 """
-\\documentclass[fleqn]{article}
-
+\\documentclass[fleqn, 11pt]{article}
 \\usepackage{macros}
+\\usepackage{fancyhdr}
+\\pagestyle{fancy}
+\\fancyhf{}
+\\fancyhead[R]{Vyom Patel}
+\\fancyhead[L]{CMPT 489: Assignment 2}
+\\fancyfoot[C]{\\thepage}
+\\renewcommand{\\headrulewidth}{0.5pt}
+\\renewcommand{\\footrulewidth}{0.25pt}
 
 % Uncomment the following 3 lines for bibliography (also see Makefile):
-\\usepackage[style=numeric]{biblatex}
-\\renewcommand{\\subtitlepunct}{: }
-\\addbibresource{bibliography.bib}
+% \\usepackage[style=numeric]{biblatex}
+% \\renewcommand{\\subtitlepunct}{: }
+% \\addbibresource{bibliography.bib}
 
 \\begin{document}
 
@@ -304,11 +312,10 @@ MAIN = File(f'{PROJECT}.tex',
 \\input{body}
 
 % Uncomment the following 2 lines for bibliography:
-\\pagebreak
-\\printbibliography
+% \\pagebreak
+% \\printbibliography
 
 \\end{document}
-
 """
 )
 
