@@ -67,90 +67,106 @@ Clean: clean
 
 MACROS = File('macros.sty',
 """
-% There are a lot of packages imported just because I may have used them once. So far,
-% I have not noticed any noticeable speed difference so who cares. :p
-\\usepackage{geometry}
+% There are a lot of packages imported just because I may have used them once. So far, I have not noticed any noticeable 
+% speed difference so who cares. :p
+\usepackage{geometry}
 %Uhh maybe change a4paper to letter if someone may print it. Stupid US Standards.
-\\geometry{a4paper,margin=1in}
+\geometry{a4paper,margin=1in}
 %Import some ams packages for math sybmols/fonts/etc.
-\\usepackage{amsmath, amsthm, amssymb, amsfonts}
-\\usepackage{xcolor}
-\\usepackage{ifthen} %Use if-else statement
-\\usepackage{pdfpages} %Used in including pdf's
-\\usepackage{graphicx} %Used to manage images in latex
-\\usepackage{setspace} %setting the spacing between lines in a document.
-\\usepackage{extarrows} %add fancy-arrows for eg. arrow with super-script etc.
-\\usepackage{mathtools} %basically more math symbols
-%micro-typographic extensions. I don't understand/use everything,
-% but just including this package improves final latex pdf.
-\\usepackage{microtype} 
-\\usepackage{cancel} % Place diaogonal-lines(cancelling) across math terms
-\\usepackage{wrapfig} % Wrap text around figures
-\\usepackage{caption} % Customising captions in figures,tables,etc.
-\\usepackage{subcaption} 
-\\usepackage{xspace}
-\\usepackage[utf8]{inputenc} %Use chars outside basic ASCII
-\\usepackage[T1]{fontenc}
-\\usepackage{enumerate} %For easy enumerate styles
-\\usepackage[a-1b]{pdfx}
-\\usepackage{hyperref}
-\\hypersetup{
-	pdfborder={0 0 0},
-    colorlinks=true,
-	allcolors=green %choose the colour of hyperlinks 
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{bm} %bold symbols in math mode
+\usepackage{physics} % Easy math symbols like norm, abs, etc
+\usepackage{todonotes} % Easily add todo notes
+\usepackage{marvosym} % Extra Symbols
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{float} % For position `H`
+\usepackage{enumerate} % Easy custom enumerate labels
+% \usepackage{enumitem}
+\usepackage{ifthen} %Use if-else statement
+\usepackage{pdfpages} %Used in including pdf's
+\usepackage{graphicx} %Used to manage images in latex
+\usepackage{setspace} %setting the spacing between lines in a document.
+\usepackage{extarrows} %add fancy-arrows for eg. arrow with super-script etc.
+\usepackage{mathtools} %basically more math symbols
+%micro-typographic extensions. I don't understand/use everything but just including this package improves final latex pdf.
+\usepackage{microtype} 
+\usepackage{cancel} % Place diaogonal-lines(cancelling) across math terms
+\usepackage{wrapfig} % Wrap text around figures
+\usepackage{caption} % Customising captions in figures,tables,etc.
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[labelfont=bf]{caption} % Customising captions in figures,tables,etc.
+\usepackage[utf8]{inputenc} %Use chars outside basic ASCII
+\usepackage[T1]{fontenc}
+\usepackage[a-1b]{pdfx}
+\usepackage{nicematrix}
+% \usepackage{minted} % Requires python package installed
+\usepackage{hyperref}
+\definecolor{LightGray}{gray}{0.9}
+\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+\definecolor{orangepeel}{rgb}{1.0, 0.62, 0.0}
+\hypersetup{
+  linkcolor  = violet,
+  citecolor  = orangepeel,
+  urlcolor   = blue,
+  colorlinks = true,
 }
-\\let\C\\relax % hyperref uses \C for a certain accent when using bookmarks I guess
+\let\C\relax % hyperref uses \C for a certain accent when using bookmarks I guess
 
-%\\usepackage[sc]{mathpazo}
-\\linespread{1.3}
-\\allowdisplaybreaks %Allow page-breaks between math env
+%\usepackage[sc]{mathpazo}
+\linespread{1.3}
+\allowdisplaybreaks %Allow page-breaks between math env
 
 %The two lines below essentially have same "feel" of mathpazo but makes the
 %math symbols better compared to regular mathpazo math symbols. As of this
 %moment I feel like using regular Latex Math font. :(
-%\\usepackage{newpxmath}
-\\usepackage{newpxtext}
+%\usepackage{newpxmath}
+\usepackage{newpxtext}
 
-\\DeclarePairedDelimiter{\\floor}{\\lfloor}{\\rfloor}
-\\DeclarePairedDelimiter{\\ceil}{\\lceil}{\\rceil}
-\\DeclarePairedDelimiter{\\inner}{\\langle}{\\rangle}
-\\renewcommand{\\bf}[1]{\\textbf{#1}}
-\\renewcommand{\\it}[1]{\\textit{#1}}
-\\renewcommand\\qedsymbol{$\\blacksquare$} %Black square looks nice
-\\newcommand{\\latex}{\\LaTeX}
-\\newcommand{\\tex}{\\TeX\\xspace}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\inner}{\langle}{\rangle}
+\renewcommand\qedsymbol{$\blacksquare$} %Black square looks nice
+\renewcommand{\bf}[1]{\textbf{#1}}
+\renewcommand{\it}[1]{\textit{#1}}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\latex}{\LaTeX}
+\newcommand{\tex}{\TeX\xspace}
+\newcommand{\etal}{\textit{et al. }}
 
-\\newcommand{\\N}{\\mathbb{N}}
-\\newcommand{\\Q}{\\mathbb{Q}}
-\\newcommand{\\R}{\\mathbb{R}}
-\\newcommand{\\Z}{\\mathbb{Z}}
-\\newcommand{\\C}{\\mathbb{C}}
-\\newcommand{\\fn}[3]{#1 : #2 \\rightarrow #3}
-\\newcommand{\\br}[1]{\\left( #1 \\right)}
-\\newcommand{\\curly}[1]{\\left\\{ #1 \\right\\}}
-\\newcommand{\\set}[2]{\\curly{#1\\ \\textbf{:}\\ #2}}
-\\newcommand{\\im}{\\textbf{im }}
-\\newcommand{\\codom}{\\textbf{codom }}
-\\newcommand{\\sbr}[1]{\\left[ #1 \\right]}
-\\newcommand{\\eqn}[1]{\\begin{eqnarray*} #1 \\end{eqnarray*}}
-\\newcommand{\\abs}[1]{\\left| #1 \\right|}
-\\newcommand{\\eps}{\\varepsilon}%varepsilon is better
-\\newcommand{\\del}{\\delta}
-\\newcommand{\\limit}[3]{\\lim_{#1 \\rightarrow #2}#3}
-\\newcommand{\\bmat}[1]{\\ensuremath{\\begin{bmatrix} #1 \\end{bmatrix}}}
-\\newcommand{\\pmat}[1]{\\ensuremath{\\begin{pmatrix} #1 \\end{pmatrix}}}
-\\newcommand{\\vmat}[1]{\\ensuremath{\\begin{vmatrix} #1 \\end{vmatrix}}}
-\\newcommand{\\smat}[1]{\\ensuremath{\\left[\\begin{smallmatrix} #1 \\end{smallmatrix}\\right]}}
-\\newcommand{\\diff}[3][]{%                                                                                                          
-	\\ifthenelse{\\equal{#1}{}}{%
-		\\ensuremath{\\frac{d{#2}}{d{#3}}}%
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\fn}[3]{#1 : #2 \rightarrow #3}
+\newcommand{\br}[1]{\left( #1 \right)}
+\newcommand{\curly}[1]{\left\{ #1 \right\}}
+\newcommand{\set}[2]{\curly{#1\ \textbf{:}\ #2}}
+\newcommand{\im}{\textbf{im }}
+\newcommand{\codom}{\textbf{codom }}
+\newcommand{\sbr}[1]{\left[ #1 \right]}
+\newcommand{\eqn}[1]{\begin{eqnarray*} #1 \end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}%varepsilon is better
+\newcommand{\del}{\delta}
+\newcommand{\limit}[3]{\lim_{#1 \rightarrow #2}#3}
+\newcommand{\bmat}[1]{\ensuremath{\begin{bmatrix} #1 \end{bmatrix}}}
+% \newcommand{\pmat}[1]{\ensuremath{\begin{pmatrix} #1 \end{pmatrix}}}
+\newcommand{\vmat}[1]{\ensuremath{\begin{vmatrix} #1 \end{vmatrix}}}
+\newcommand{\smat}[1]{\ensuremath{\left[\begin{smallmatrix} #1 \end{smallmatrix}\right]}}
+\newcommand{\diff}[3][]{%                                                                                                          
+	\ifthenelse{\equal{#1}{}}{%
+		\ensuremath{\frac{d{#2}}{d{#3}}}%
 	}{%                                                                                                                                  
-		\\ensuremath{\\frac{d^{#1}\\!{#2}}{d{#3}^{#1}}}%                                                                                                   
+		\ensuremath{\frac{d^{#1}\!{#2}}{d{#3}^{#1}}}%                                                                                                   
 	}%
 }
-\\newcommand{\\overbar}[1]{%Between overline and overbar
-		\\mkern 1.5mu\\overline{\\mkern-1.5mu#1\\mkern-1.5mu}%
-		\\mkern 1.5mu%
+\newcommand{\overbar}[1]{%Between overline and overbar
+		\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}%
+		\mkern 1.5mu%
 }
 """
 )
