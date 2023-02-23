@@ -116,7 +116,7 @@ MACROS = File('macros.sty',
 \\let\\C\\relax % hyperref uses \C for a certain accent when using bookmarks I guess
 
 %\\usepackage[sc]{mathpazo}
-\\linespread{1.3}
+\\onehalfspacing
 \\allowdisplaybreaks %Allow page-breaks between math env
 
 %The two lines below essentially have same "feel" of mathpazo but makes the
