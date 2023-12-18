@@ -71,10 +71,9 @@ MACROS = File('macros.sty',
 % speed difference so who cares. :p
 \\usepackage{geometry}
 %Uhh maybe change a4paper to letter if someone may print it. Stupid US Standards.
-\\geometry{a4paper,margin=1in}
+\\geometry{a4paper,margin=0.75in}
 %Import some ams packages for math sybmols/fonts/etc.
 \\usepackage{amsmath, amsthm, amssymb, amsfonts}
-\\usepackage{bm} %bold symbols in math mode
 \\usepackage{physics} % Easy math symbols like norm, abs, etc
 \\usepackage{todonotes} % Easily add todo notes
 \\usepackage{marvosym} % Extra Symbols
@@ -89,17 +88,11 @@ MACROS = File('macros.sty',
 \\usepackage{setspace} %setting the spacing between lines in a document.
 \\usepackage{extarrows} %add fancy-arrows for eg. arrow with super-script etc.
 \\usepackage{mathtools} %basically more math symbols
-%micro-typographic extensions. I don't understand/use everything but just including this package improves final latex pdf.
-\\usepackage{microtype} 
 \\usepackage{cancel} % Place diaogonal-lines(cancelling) across math terms
 \\usepackage{wrapfig} % Wrap text around figures
-\\usepackage{caption} % Customising captions in figures,tables,etc.
-\\usepackage{subcaption}
 \\usepackage{algorithm}
 \\usepackage{algorithmic}
-\\usepackage[labelfont=bf]{caption} % Customising captions in figures,tables,etc.
-\\usepackage[utf8]{inputenc} %Use chars outside basic ASCII
-\\usepackage[T1]{fontenc}
+\\usepackage{subcaption}
 \\usepackage[a-1b]{pdfx}
 \\usepackage{nicematrix}
 % \\usepackage{minted} % Requires python package installed
@@ -115,15 +108,32 @@ MACROS = File('macros.sty',
 }
 \\let\\C\\relax % hyperref uses \C for a certain accent when using bookmarks I guess
 
-%\\usepackage[sc]{mathpazo}
 \\onehalfspacing
 \\allowdisplaybreaks %Allow page-breaks between math env
 
-%The two lines below essentially have same "feel" of mathpazo but makes the
-%math symbols better compared to regular mathpazo math symbols. As of this
-%moment I feel like using regular Latex Math font. :(
-%\\usepackage{newpxmath}
-\\usepackage{newpxtext}
+% FONT STUFF
+% See: https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math
+
+\\usepackage{microtype}
+\\usepackage[utf8]{inputenc} % inputenc allows the user to input accented characters directly from the keyboard; 
+                             % utf8x : much broader but less compatible ; latin1 : old?
+                             % https://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc
+
+\\usepackage[T1]{fontenc}    % fontenc is oriented to output, that is, what fonts to use for printing characters. 
+                             % https://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc 
+                             % https://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+% mathpazo is obsolete, use newpxtext and newpxmath. newpxtext sets Serif: Palatino, Sans-Serif: Helvetica, Monospace:
+% Bera Mono. It also scales as required.
+\\usepackage[osf]{newpxtext}  % osf: Old style figures numbers, sc: small caps
+\\usepackage{newpxmath}
+% \\usepackage{eulervm}
+\\usepackage[margin=15pt, font=small, labelfont={bf,sf}]{caption} % Tweak caption labels
+
+% Set font for section headings
+\\usepackage{sectsty}
+\\allsectionsfont{\\sffamily}
+
+\\usepackage{bm}           % load after all math to give access to bold math
 
 \\DeclarePairedDelimiter{\\floor}{\\lfloor}{\\rfloor}
 \\DeclarePairedDelimiter{\\ceil}{\\lceil}{\\rceil}
@@ -132,16 +142,19 @@ MACROS = File('macros.sty',
 \\renewcommand{\\bf}[1]{\\textbf{#1}}
 \\renewcommand{\\it}[1]{\\textit{#1}}
 \\newcommand{\\mbf}[1]{\\mathbf{#1}}
+\\newcommand{\\vect}[1]{\\mathbf{#1}}
 \\newcommand{\\mcal}[1]{\\mathcal{#1}}
 \\newcommand{\\latex}{\\LaTeX}
 \\newcommand{\\tex}{\\TeX\\xspace}
 \\newcommand{\\etal}{\\textit{et al. }}
+\\newcommand{\\numberthis}{\\addtocounter{equation}{1}\\tag{\\theequation}}
 
-\\newcommand{\\N}{\\mathbb{N}}
-\\newcommand{\\Q}{\\mathbb{Q}}
-\\newcommand{\\R}{\\mathbb{R}}
-\\newcommand{\\Z}{\\mathbb{Z}}
-\\newcommand{\\C}{\\mathbb{C}}
+\\newcommand{\\field}[1]{\mathbb{#1}}
+\\newcommand{\\N}{\\field{N}}
+\\newcommand{\\Q}{\\field{Q}}
+\\newcommand{\\R}{\\field{R}}
+\\newcommand{\\Z}{\\field{Z}}
+\\newcommand{\\C}{\\field{C}}
 \\newcommand{\\fn}[3]{#1 : #2 \\rightarrow #3}
 \\newcommand{\\br}[1]{\\left( #1 \\right)}
 \\newcommand{\\curly}[1]{\\left \\{ #1 \\right\\}}
@@ -154,7 +167,6 @@ MACROS = File('macros.sty',
 \\newcommand{\\del}{\\delta}
 \\newcommand{\\limit}[3]{\\lim_{#1 \\rightarrow #2}#3}
 \\newcommand{\\bmat}[1]{\\ensuremath{\\begin{bmatrix} #1 \\end{bmatrix}}}
-% \\newcommand{\\pmat}[1]{\\ensuremath{\\begin{pmatrix} #1 \\end{pmatrix}}}
 \\newcommand{\\vmat}[1]{\\ensuremath{\\begin{vmatrix} #1 \\end{vmatrix}}}
 \\newcommand{\\smat}[1]{\\ensuremath{\\left[\\begin{smallmatrix} #1 \\end{smallmatrix}\\right]}}
 \\newcommand{\\diff}[3][]{%                                                                                                          
@@ -177,7 +189,7 @@ TITLE = File('title.tex',
 	
 		\\huge{TEXT HERE}
 }
-\\author{Vyom Patel \\\\ NSID : vnp614}
+\\author{Vyom Patel}
 \\date{\\today}
 \\maketitle
 
@@ -215,12 +227,6 @@ Here are a few matrices:
 \\begin{itemize}
 	\\item Square-brackets: \\[
 		\\bmat{
-			1 & 1 \\\\
-			0 & 1 \\\\
-		}
-	\\]
-	\\item Round-brackets: \\[
-		\\pmat{
 			1 & 1 \\\\
 			0 & 1 \\\\
 		}
