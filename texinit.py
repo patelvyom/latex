@@ -67,8 +67,6 @@ Clean: clean
 
 MACROS = File('macros.sty',
 """
-% There are a lot of packages imported just because I may have used them once. So far, I have not noticed any noticeable 
-% speed difference so who cares. :p
 \\usepackage{geometry}
 %Uhh maybe change a4paper to letter if someone may print it. Stupid US Standards.
 \\geometry{a4paper,margin=0.75in}
@@ -80,8 +78,7 @@ MACROS = File('macros.sty',
 \\usepackage{xcolor}
 \\usepackage{xspace}
 \\usepackage{float} % For position `H`
-\\usepackage{enumerate} % Easy custom enumerate labels
-% \\usepackage{enumitem}
+\\usepackage{enumitem}
 \\usepackage{ifthen} %Use if-else statement
 \\usepackage{pdfpages} %Used in including pdf's
 \\usepackage{graphicx} %Used to manage images in latex
@@ -197,107 +194,6 @@ TITLE = File('title.tex',
 
 """)
 
-BODY = File('body.tex',
-"""
-\\subsection{newpxtext has been used in this template for regular text.}
-
-Let's start with printing out TeX, LaTeX logo/symbol: \\tex , \\latex. \\\\
-We denote the set of real numbers as $\\R$ and that of complex numbers as
-$\\C$.
-
-A map is written as $\\fn{f}{X}{Y}$ where $\\im f = f(X)$ and $\\codom f = Y$.
-
-These are large brackets:
-
-\\[
-\\br{\\frac{a}{b}}\\br{a + b}
-\\]
-
-A simple set:
-\\[
-	\\curly{\\frac{1}{2}, \\frac{2}{3}, \\frac{\\pi^2}{6}}
-\\]
-
-A set with a predicate:
-\\[
-	\\set{z}{\\zeta\\br{z} = 0}
-\\]
-
-Here are a few matrices:
-\\begin{itemize}
-	\\item Square-brackets: \\[
-		\\bmat{
-			1 & 1 \\\\
-			0 & 1 \\\\
-		}
-	\\]
-	\\item Determinant type: \\[
-		\\vmat{
-			1 & 1 \\\\
-			0 & 1 \\\\
-		}
-	\\]
-	\\item Small-matrix: \\[
-		\\smat{
-			1 & 1 \\\\
-			0 & 1 \\\\
-		}
-	\\]
-\\end{itemize}
-
-Equivalence class of a sequence:
-\\[
-	\\sbr{\\frac{1}{n}}
-\\]
-
-Use ceiling and floor like this: $\\ceil{x}$ and $\\ceil{\\frac{a}{b}}$.You can pass
-optional size argument to make it bigger like this: $\\ceil[\\Big]{\\frac{a}{b}}$.
-Floor is used in a similar manner.\\\\
-
-This is an aligned equation:
-\\eqn{
-	A &=& 1\\\\
-	B &=& 2\\\\
-	C &=& 3
-}
-
-This is a limit:
-\\eqn{
-	\\limit{n}{\\infty}{\\sum_{i = 1}^n \\frac{1}{i^2}}
-}
-
-Limits of functions $\\fn{f}{\\R^m}{\\R^n}$ are defined as follows:
-\\eqn{
-	\\limit{x}{a}{f(x)} = p \\iff
-		\\forall \\eps > 0, \\exists \\del > 0, \\abs{x - a} < \\del
-		\\implies \\abs{f(x) - f(a)} < \\eps
-}
-
-Here are some derivatives:
-\\begin{itemize}
-	\\item Regular derivative:
-	\\eqn{
-		\\diff{y}{x}{\\br{\\sum_{k = 1}^{\\infty}\\frac{1}{k^x}}}
-	}
-	\\item n'th Derivative: 
-	\\eqn{
-		\\diff[n]{y}{x}{\\br{\\sum_{k = 1}^{\\infty}\\frac{1}{k^x}}}
-	}
-\\end{itemize}
-
-To make some text bold, use \\bf{this}. To make it italic, use \\it{this}. Note that
-in-built "bf" and "it" functions do something different.
-
-To 
-\\begin{proof}
-		Q.E.D square looks like this...
-\\end{proof}
-
-% Uncomment the following line for bibliography:
-% Here is a ciatation of a great book \\cite{DDSE}.
-
-""")
-
 BIBLIOGRAPHY = File('bibliography.bib',
 """
 @book{DDSE,
@@ -311,13 +207,13 @@ BIBLIOGRAPHY = File('bibliography.bib',
 """)
 
 MAIN = File(f'{PROJECT}.tex',
-"""\\documentclass[fleqn, 11pt]{article}
+"""\\documentclass[fleqn]{article}
 \\usepackage{macros}
 \\usepackage{fancyhdr}
 \\pagestyle{fancy}
 \\fancyhf{}
 \\fancyhead[R]{Vyom Patel}
-\\fancyhead[L]{CMPT 489: Assignment 2}
+\\fancyhead[L]{QIC 890: Assignment 1}
 \\fancyfoot[C]{\\thepage}
 \\renewcommand{\\headrulewidth}{0.5pt}
 \\renewcommand{\\footrulewidth}{0.25pt}
@@ -330,7 +226,6 @@ MAIN = File(f'{PROJECT}.tex',
 \\begin{document}
 
 \\input{title}
-\\input{body}
 
 % Uncomment the following 2 lines for bibliography:
 % \\pagebreak
@@ -420,13 +315,11 @@ METADATA = File(f'{PROJECT}.xmpdata',
 %                      format suitable for storing in a database field
 %                      with a 'date' data type.
 
-
-
 \\Title        {TITLE HERE}
 
 \\Author       {Vyom Patel}
 
-\\Copyright    {Copyright \copyright\ 2023 "Vyom Patel"}
+\\Copyright    {Copyright \copyright\ 2024 "Vyom Patel"}
 
 \\Keywords     {some keyword\sep
                another keyword\sep
@@ -436,16 +329,18 @@ METADATA = File(f'{PROJECT}.xmpdata',
 
 """
 )
-FILES = [ PROJECT_FILE,
-		  GITIGNORE,
-		  MAKEFILE,
+FILES = [ GITIGNORE,
 		  MACROS,
 		  TITLE,
-		  BODY,
-		  BIBLIOGRAPHY,
 		  MAIN,
 		  METADATA
 		]
+
+if '--makefile' in sys.argv[2:]:
+    FILES.append(MAKEFILE, PROJECT_FILE)
+
+if '--bib' in sys.argv[2:]:
+	FILES.append(BIBLIOGRAPHY)
 
 print(f'> Making directory {PROJECT}...')
 os.mkdir(PROJECT)
