@@ -67,35 +67,35 @@ Clean: clean
 
 MACROS = File('macros.sty',
 """
-\\usepackage{geometry}
 %Uhh maybe change a4paper to letter if someone may print it. Stupid US Standards.
-\\geometry{a4paper,margin=0.75in}
-%Import some ams packages for math sybmols/fonts/etc.
-\\usepackage{amsmath, amsthm, amssymb, amsfonts}
-\\usepackage{physics} % Easy math symbols like norm, abs, etc
-\\usepackage{todonotes} % Easily add todo notes
-\\usepackage{marvosym} % Extra Symbols
+\\usepackage[a4paper, margin=0.75in]{geometry}
+\\usepackage{amsmath, amsthm, amssymb, amsfonts}        % AMS packages for symbols, fonts, theorem envs.
+\\usepackage{mathtools}                                 % Basically more math symbols
+\\usepackage{xparse}                                    % Required for physics?
+\\usepackage{physics}                                   % Easy math symbols like norm, abs, etc
+\\usepackage{todonotes}                                 % Easily add todo notes
+\\usepackage{marvosym}                                  % Extra Symbols
 \\usepackage{xcolor}
 \\usepackage{xspace}
-\\usepackage{float} % For position `H`
+\\usepackage{float}                                     % For position `H`
+\\usepackage{booktabs}                                  % Better table formatting
+\\usepackage{multirow}                                  % Allows for rows spanning multiple rows in tables
+\\usepackage{tabularx}                                  % Adjustable col size in tables
 \\usepackage{enumitem}
-\\usepackage{ifthen} %Use if-else statement
-\\usepackage{pdfpages} %Used in including pdf's
-\\usepackage{graphicx} %Used to manage images in latex
-\\usepackage{setspace} %setting the spacing between lines in a document.
-\\usepackage{extarrows} %add fancy-arrows for eg. arrow with super-script etc.
-\\usepackage{mathtools} %basically more math symbols
-\\usepackage{cancel} % Place diaogonal-lines(cancelling) across math terms
-\\usepackage{wrapfig} % Wrap text around figures
+\\usepackage{ifthen}                                    % Use if-else statement
+\\usepackage{pdfpages}                                  % Include pdf's
+\\usepackage{graphicx}                                  % Used to manage images in latex
+\\usepackage{setspace}                                  % Set spacing between lines in a document
+\\usepackage{extarrows}                                 % fancy-arrows for eg. arrow with super-script etc.
+\\usepackage{cancel}                                    % Place diaogonal-lines(cancelling) across math terms
+\\usepackage{wrapfig}                                   % Wrap text around figures
 \\usepackage{algorithm}
 \\usepackage{algorithmic}
-\\usepackage{subcaption}
+\\usepackage{subcaption}                                % Subfigures
 \\usepackage[a-1b]{pdfx}
 \\usepackage{nicematrix}
-% \\usepackage{minted} % Requires python package installed
-\\usepackage{hyperref}
-\\definecolor{LightGray}{gray}{0.9}
-\\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+% \\usepackage{minted}                                  % Code snippets: requires python package installed
+\\usepackage[pdfusetitle]{hyperref}
 \\definecolor{orangepeel}{rgb}{1.0, 0.62, 0.0}
 \\hypersetup{
   linkcolor  = violet,
@@ -103,14 +103,12 @@ MACROS = File('macros.sty',
   urlcolor   = blue,
   colorlinks = true,
 }
-\\let\\C\\relax % hyperref uses \C for a certain accent when using bookmarks I guess
-
+\\let\\C\\relax                                         % hyperref uses \C for a certain accent when using bookmarks
 \\onehalfspacing
-\\allowdisplaybreaks %Allow page-breaks between math env
+\\allowdisplaybreaks                                    %Allow page-breaks between math env
 
 % FONT STUFF
 % See: https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math
-
 \\usepackage{microtype}
 \\usepackage[utf8]{inputenc} % inputenc allows the user to input accented characters directly from the keyboard; 
                              % utf8x : much broader but less compatible ; latin1 : old?
@@ -121,16 +119,17 @@ MACROS = File('macros.sty',
                              % https://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
 % mathpazo is obsolete, use newpxtext and newpxmath. newpxtext sets Serif: Palatino, Sans-Serif: Helvetica, Monospace:
 % Bera Mono. It also scales as required.
-\\usepackage[osf]{newpxtext}  % osf: Old style figures numbers, sc: small caps
+\\usepackage[osf]{newpxtext}                            % osf: Old style figures numbers, sc: small caps
 \\usepackage{newpxmath}
+% \\usepackege{lmodern}                                 % use this if need the default font
 % \\usepackage{eulervm}
 \\usepackage[margin=15pt, font=small, labelfont={bf,sf}]{caption} % Tweak caption labels
 
 % Set font for section headings
 \\usepackage{sectsty}
 \\allsectionsfont{\\sffamily}
-
 \\usepackage{bm}           % load after all math to give access to bold math
+
 
 \\DeclarePairedDelimiter{\\floor}{\\lfloor}{\\rfloor}
 \\DeclarePairedDelimiter{\\ceil}{\\lceil}{\\rceil}
@@ -166,13 +165,6 @@ MACROS = File('macros.sty',
 \\newcommand{\\bmat}[1]{\\ensuremath{\\begin{bmatrix} #1 \\end{bmatrix}}}
 \\newcommand{\\vmat}[1]{\\ensuremath{\\begin{vmatrix} #1 \\end{vmatrix}}}
 \\newcommand{\\smat}[1]{\\ensuremath{\\left[\\begin{smallmatrix} #1 \\end{smallmatrix}\\right]}}
-\\newcommand{\\diff}[3][]{%                                                                                                          
-	\\ifthenelse{\\equal{#1}{}}{%
-		\\ensuremath{\\frac{d{#2}}{d{#3}}}%
-	}{%                                                                                                                                  
-		\\ensuremath{\\frac{d^{#1}\\!{#2}}{d{#3}^{#1}}}%
-	}%
-}
 \\newcommand{\\overbar}[1]{%Between overline and overbar
 		\\mkern 1.5mu\\overline{\\mkern-1.5mu#1\\mkern-1.5mu}%
 		\\mkern 1.5mu%
